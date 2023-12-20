@@ -23,6 +23,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:32.1.1-jre'
+    
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -40,4 +41,12 @@ application {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+task myTask{
+    description="This is my custom task"
+doLast{
+  println "Welcome to Rahuls's univese"
+  
+}
 }

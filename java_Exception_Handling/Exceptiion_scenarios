@@ -1,0 +1,523 @@
+RUntime stack mechanism
+Default exception handling in java
+exception hierarchy
+Customised exception habdling by using try and catch
+control flow in  try and catch
+Methods to print exception information
+try with multiple catch blocks
+finally block
+differecence between final , finally and finalize
+various possible combination of try , catch and finally
+control flow in try catch and finally
+throw keyword
+throws keyword
+exception handling keyword summary
+various possible compile time errors in exception handling
+user defined exception
+top 10 exceptions
+=====================================================================================
+These are the fundamental concepts of exception
+
+
+Exception
+==========
+Exception is defined as some un expected event that occurs and violates normal execution of program.
+
+Exception handling
+==================
+To have proper termination  of program not abrubt termination we handle exception via some otherarrangments.
+
+Run time stack mechanism
+========================
+This is a process when ever a method is executed ,a seperated entry in made in the stack by jvm and once the method execution is over , the entire stack is terminated.
+
+
+Default Exception handling in java
+==================================
+The JVM handles this exception and prints the exception and also the displays the stack trace
+
+Exception hierarchy
+===================
+Throwable is the parent class for all the exception.
+This class cotains two classes first is exception and second is error
+
+There is a difference betweem error and exception,they both are not the same,  
+Exception is recoverale as the exceptions can be habndled by try and catch block
+where as error are non recpoverable as the error are out of the scope of the developer as errors are caused due to some sysytem mal functions like virus attack , memory problem.
+
+
+Exception
+=========
+Under exception there are many child exception
+  Runtime exception
+    Arithmetic exception
+    Null pointer exception
+    array index out of bound exception
+    illegal argument exception 
+  
+  IO exception
+    End of file exception
+    file not found exception
+
+etc etc ...............
+
+Error
+======
+There are several errors in this class aswell like
+virtula error
+index error
+
+
+What is the differnece between checked and un checked exception
+===============================================================
+
+Checked exception
+=================
+Note exception occurs at run time only , not at compile time
+The exception checked by compiler is known as checked exception , this is like the compiler predicts that certain exception may occur in the future and if it occurs how to handle such exceptions so that the code can run smoothly. 
+
+for example you try to read a file or write into a file, and currentlt the file is present and what if in the future you are trying to read or write into a file that is absent , you get error and the program excution may get affected in order to ensure smooth execution of the program the compiler , throws some exception ,saying to handle such scenarios. This is known as checked exception.
+
+
+Un Checked exception
+====================
+The exception not checked by compiler is known as checked exception
+Example 
+Aithmaetic exception , this does not occur at compile time this exception occurs at the run time, or array index out of bound excption all these are unchecked exception.
+
+In the whole the Runtime exception and its child classes and all the error are unchecked exception , apart from this the remaining exceptions are unchecked exception which means we as a developer should handle these exceptions.
+
+IOException ->Checked
+Runtime->Unchecked
+Interrupted->Checked
+Aithmetic->unchecked
+
+
+Customised exception handling by using try catch block
+======================================================
+try{
+  Risky code
+}
+
+catch(AnyException e){
+  print the exception with some relevant print statements
+}
+
+Some scenarios of try and catch blocks
+
+try{
+  statement 1
+  statement 2
+  statement 3
+}
+
+catch(){
+  Some things to handle this exceptions
+}
+
+case1
+=====
+When an excpetion occurs at statement 2 , the control goes to catch block and does not return back to try block again, hence you should keep the required lines inside the try block so that you can execute the remaining lines of the code .
+
+case 2
+=======
+There should always be an catch stament with the right Exception habdler to handle the exception , if you do not know the excat type of the exception you can simply go with the parent class that the Exception class to catch any such excpetions.
+
+
+Method to print Exception
+=========================
+1) e.printStackTrace()s
+2) e.toString or sopln(e)
+3) e.getMessage()
+
+Throwable class contains all these methods.
+===========================================
+1) e.printStacktrace() this prints the complete info about the occured exception, and most of the time this is the preferred exception 
+2) e.toString() This method prints the exception on the console
+3) e.gerMessage() This method prints the exception alone on the console and nothing else.
+
+Try with multiple catch blocks
+==============================
+Imagine in your try block you are getting Arithmetic exception your catch block can handle this exception and what this like using Exception e , but its is not recommended as for all exception same line of code is used , there fore for different exception we should use the dedicated exception handler.
+
+This is where the concept of multiple catch comes into picture.
+There is a case when you have mutiple catch statements.
+
+Relational exception is child of Exception class and all the exceptions that come under Relational exception like Aithmetic exception etc etc , these exception are all the child exceptions.
+
+There for the hierarchy of the catch blocks should always be from child to parent , the Exception class catch block should always come after child exception block. or else you get compile time exception.
+
+
+try{
+  some code that might raise exception 
+}
+
+catch(ArithmeticException e){
+  -----
+  -----
+}
+
+catch(Exception e){
+  ----------
+  ----------
+}
+
+This is the right way to have miltiple catch blocks, but doing it reverese shall raise exception.
+
+Finally block
+===========================================
+finally block is always executed irrespective of exception occured or not in the try block.Below is an example with eception occured
+package UncheckedException;
+
+public class Test3 {
+  public static void main(String[] args) {
+    try {
+      int x = 10 / 1;
+    } catch (ArithmeticException e) {
+      System.out.println("This is exception occured case" + e);
+    } finally {
+      System.out.println("This block is always executed");
+    }
+  }
+}
+similarly you can have for the exception non occured case aslo.
+
+The speciality of finally block even though you did not handle the exception that occured that is even during abnormal execution of try catch block the finally block is always executed.
+
+Finally block vs return statement
+==================================
+What happens if there is a return statemet in finally block , jvm will go execute the content inside the finally block later it comes to the return statement.
+try{
+  -----
+  return
+}
+catch()
+{
+  ---------
+  return
+}
+finally{
+  some code that should always run
+}
+
+if all three  blocks contain return statement , then the return statement present inside the finally block will be executed alone.
+
+Sysytem.exit(0) vs finally
+===========================
+In this particular case if there is exit code in try or catch block, the system.exit() always dominates finally  block.
+
+Nested try catch block
+======================
+try and catch block inside a try block is known as nested try catch block.
+package UncheckedException;
+
+public class Test4 {
+  public static void main(String[] args) {
+
+    try {
+      System.out.println("Outer try block");
+      try {
+        int x = 10 / 0;
+
+      } catch (ArithmeticException e) {
+        System.out.println("Caught the inner exception" + e);
+      }
+    }
+
+    catch (Exception e) {
+      System.out.println("Caught the outer exception");
+    }
+  }
+}
+The above is an example of Nested try catch block, 
+if the inner catch block does not handle the exception occured , then the catch block out side the parent try block tries to handle , if the the outer most catch block aslo fails to handle the exception , then we have abnomal termination.
+
+
+Various combination if try catch and finally
+
+try{   This is valid
+}
+catch (ex e){
+
+}
+
+try{
+  --- This is invalid as two catch with same exception is invalid.
+}
+
+catch(ex e){} 
+catch(ex e){}
+ 
+ These things are not so important as of now  so this is sufficiently enough
+ ==================================================================================
+
+ Need of throws keyword
+ -----------------------
+This is used for customized exception , and to hand over the exception to JVM is done via the throws keyword.
+
+So basically we create an Exception object manually and throw the exception object to JVM , where JVM catches the exception and executes the exception.
+ 
+ Class Test{
+  public static void main(...){
+    throw new ArithmeticException; // this will throw the exception to JVM
+  }
+ }
+
+ similar to ArithmeticExcption , you can throw exception for the test class also, this is possible , when the Test class extends the any child class of Throwabl class like Exception class or RuntimeException class etc.
+
+ Class Test extends RuntimeException
+ {
+  psvm(){
+
+    throw new Test();//This becomes valid now as Test class is child of RuntimeException class.
+
+  }
+ }
+
+Need usage of throws keyword
+-------------------------------
+The below code snippet gets a compile time exception saying , the checked exception is not handled during the compilation itself.
+public class Test2 {
+  public static void main(String[] args) {
+    Thread.sleep(100);
+  }
+}
+Therefore if you enclose this inside a try catch block , you convince compiler that if somethig wrong happens you will handle it, and hence the code runs fine.
+package ThrowsInException;
+
+public class Test2 {
+  public static void main(String[] args) {
+    try {
+      Thread.sleep(100000);
+      System.out.println("Done");
+    }
+
+    catch (Exception e) {
+      System.out.println("handled exception here");
+    }
+
+  }
+}
+
+And there is one more way to handle this checked exception, and that is using the throws keyword.
+package ThrowsInException;
+
+public class Test3 {
+  // In this we use the throws keyword in oreder to handle the chekced exceptions
+  public static void main(String[] args) throws InterruptedException {
+    Thread.sleep(100);
+    System.out.println("The execution is successful");
+  }
+}
+
+So here the throws keyword is deligating the responsibility to the caller , so the caller of the main method is JVM , hence the compiler, compiles the since the checked exception is habdled by the JVM itself. 
+
+Throws Keyword summary
+----------------------
+it is used for checked exception
+it is used only to convince compiler, hence it is not recommended when comes with try catch  block.
+
+Case study of throws key word and deligating concept
+package ThrowsInException;
+
+public class Test4 {
+  public static void main(String[] args) throws InterruptedException {
+    dostuff();
+  }
+
+  public static void dostuff() throws InterruptedException {
+  
+      domorestuff();
+    
+
+  }
+
+  public static void domorestuff() throws InterruptedException {
+    Thread.sleep(100);
+  }
+}
+
+if the  method that is raisng this exception , either the method can handle by using the try catch block else it can deligate the responsibility to the caller , in our case dostuff method  is the  is called by main method and dostuff calls do more stuff , which raises some exception , if domrestuff method did not handle the exception then , it will deligate to dostuff and if dostuff did not handle this then , domorestuff should handle , else it can delogate to main method now either the main method can handle via try catch block , or it can deligate to JVM.
+
+Here the hierarchy of deligation becomes important .
+
+Usage of throws keyword
+=========================
+-> The throws key word can be used by constructor or  method , since it can be called , but it cannot be used by class as class cannot be called. you get compile time error when you attach throws keyword to a class.
+
+-> class Test {
+  psvmain() throws Test
+}
+you get error here as class Test is not child class of thrrowable , therefore to make this valid you have to make this child class of any threowable class
+
+class Test extends Exception/RuntimeException/etc
+Now the Test class is a throwable type.
+
+Difference between final,finally and finalize
+===============================================
+final :- it is a access modifier , this can be used along method, class and variable.
+final varaible-> we cannot change its value, behaves as constant
+final method-> we cannot over ride this method
+final class-> we cannot create child class for this method.
+
+finally
+--------
+This is something used with try catch 
+
+finalize
+--------
+garbage collector calls finalize method for clean up activity before destroying the object.
+
+Customized or user defined exceptions
+--------------------------------------
+This is exception developed by programmer.
+So based on certain we can raise exception
+
+Below there is a code snippet of user defined exception using the throw keyword,
+-> It is always recommended to go with RuntimeException as a parent class ,since run time exceptions are unchecked excrptions and the compiler will not throw compilation error , when we define customised exception as the main moto of having user defined exception to have smooth termination of program with the display message.
+
+
+package ThrowsInException;
+
+public class Test5 {
+  public static void main(String[] args) {
+    int age = 70;
+    if (age > 60) {
+      throw new TooOldException("You are too old gransps");
+    } else if (age < 18) {
+      throw new TooyoungException("You are too young you pervert");
+    }
+
+    else {
+      System.out.println("Thank you for registration");
+    }
+  }
+}
+
+class TooyoungException extends RuntimeException {
+  TooyoungException(String msg) {
+    super(msg);
+
+  }
+}
+
+class TooOldException extends RuntimeException {
+  TooOldException(String msg) {
+    super(msg);
+  }
+}
+
+Top Ten Exceptions
+------------------
+ArrayIndexOutofBound
+Nullpointer
+StackOverflow
+ClassCast
+NoClassDefFound
+AssertionErro etc etc
+
+ArrayIndexOutofBoundException-->IndexOutOfBoundException-->RuntimException-->Exception-->Throwable
+Example
+int [] a =new int[10];
+default value for int type is 0
+if you try to access the invalid index value like a[10] you get this exception.
+
+
+Nullpointer Exeption
+-------------------
+This is also child class of Runtime Exception hence its unchecked exception.
+Example
+String s ="Rahul";
+sopln(s.length()); you get valid answer here
+
+String s =null;
+sopln(s.length()); here you get the null pointer exception, on null value if you perform any operation you get null pointer exception.
+
+StackOverflowError
+-------------------
+This is a cild class Error -->Throwable and this is also unchecked , when you perform recursive method due to out of space of the stack , you may get this error.
+
+ClassCast Exception
+-------------------
+child class of Runtime Exception.
+String s=new String("Rahul);
+Object o=(Object) s;
+This kind of Exception we get while type casting the oject of one type to other class object.
+
+NoClassDefFound Errror
+---------------------
+When ever JVM requies .class file to run one class if the one .class has dependency on other .class file , and during runtime if the dependent .class file is absent then you get this exception.
+
+
+ExceptionInIntializer Error
+----------------------------
+Child class of Linkage error this is also child of Error.
+While performaing static variable initialization, and while executoing static blocks if there is some exception then you get this exception.
+static int x=1/10;
+
+
+IllegalArgument Exception-->Runtime Exception
+---------------------------------------------
+if we are invoking method with illegal argument , or invoke constructor with illegal parameters then this Exception arises.
+
+NumberFormat Exception
+---------------------
+When you try to convert String to number , but String is not in number format , in that case you  get  this error.
+
+IllegalState Exception
+-----------------------
+If you are calling method wrong time.
+For example if you have already started a thread any trying to start the same thread agian , you get this exception.
+
+Assertion Error
+----------------
+When ever Assetion fails we get assertion error simple as that.
+
+New featues in Java 1.7
+1 ->try with Resources
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

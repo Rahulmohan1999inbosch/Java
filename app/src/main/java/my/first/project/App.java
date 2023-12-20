@@ -5,10 +5,19 @@ package my.first.project;
 
 public class App {
     public String getGreeting() {
+        System.out.println("This is an output");
         return "Hello World!";
+    }
+
+    public int tables(int x) {
+        x = x + 10;
+        return x;
     }
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+        System.out.println(new App().tables(10));
+
     }
+
 }

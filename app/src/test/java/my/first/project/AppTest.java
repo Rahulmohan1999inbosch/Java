@@ -11,4 +11,16 @@ class AppTest {
         App classUnderTest = new App();
         assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
+
+    @Test
+    void hello() {
+        App obj = new App();
+        assertEquals(obj.getGreeting(), "Hello World!");
+    }
+
+    @Test
+    void validate() {
+        App obj = new App();
+        assertEquals(obj.tables(12), 22);
+    }
 }
