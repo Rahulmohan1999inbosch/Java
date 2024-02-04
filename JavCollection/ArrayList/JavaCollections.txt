@@ -1,0 +1,151 @@
+Collections means group of objects , and collections frame works this comprises of different classes and interfaces.
+
+Array is  used to store multiple objects
+int []a =new int[100];
+
+There are certain limitations with array concept.
+->we can store homogenous values , will only allow you to store same kind of data.
+
+Student [] sh=new Student[10];
+Here it can store only student objects.
+
+Object a[] =new Object[5];
+This can store any kind of data , since all the objects are child of Object class, this is one solution , but still there is some problems, 
+1) it is fixed in size , cannot dynamically expand the size of array.
+2) Chaces are there the  memory wasteage.
+3)incompatible for any builtin methods.
+
+To over come these problems we go with collections frame works.
+
+                             Collection FrameWorks
+                             ====================
+Array list
+List
+Hashmap
+Hashmap etc etc
+
+Collection is a class , present in java.util packages, it contains certain methods which can be used on collection.
+collection is an interface
+collections is a class
+
+
+Collection (Interface)
+  |->List
+  |->Set
+  |->Queue
+We have these three more interfaces
+
+List Interface
+==============
+if you want to add group of objects , the insertion order should be preserved and duplicates are allowed.
+
+Classse available that implemets this list interface.
+List
+  ArrayList
+  LinkedList
+  Vector
+Theses three class implents the list interface.
+
+Set Interface <-- Collection
+Insertion order not preserved, duplicates not allowed.
+
+Set
+  Hashset
+  LinkedHashset
+
+Queue(Interface) <--- Collection
+  Priority Queue
+
+All these interfaces and sub interfaces comes under collection interface
+
+Map
+====
+Map is a seperate entity does not belong to collection interface, its a stand alone interface , it comes with key and value pair.
+
+Classes implemted map interfaces are 
+  Hashmap
+  linked Hashmap
+
+Methods available in collection interface.
+add(Object o) adds single object to collection
+addAll( Collection C) add multiple objects
+remove(Object o) 
+removeAll(Collection C) removes all objects from the collection
+retainAll(Collection C) Except the objects mentioned in the collection all the objects will be removed.
+clear() clears all the objects 
+isempty() returns boolean
+size() length of the object
+contains()
+containsALL()
+
+-------------------------------------------------
+List interface also has its own methods
+
+add(index,object o)-->This methods add the object in a particular position.
+adAll(index,collection)
+remove(index)
+get(index) ->returns object
+set(index,object o)-->replace the existing object with new object
+
+Array List
+----------
+Arraylist al =new ArrayList(); 
+Default size of array list is 10 and you can expand this based on  the requirement, here the insertion order is also preserved.
+
+Methods of array list class.
+ ArrayList al=new ArrayList();
+ this al object can store heteogenous data.
+
+ ArrayList <String> al =new <String> ArrayList();
+ This will restrict the arrayList to store only string value.
+
+Linked List 
+------------
+List interface -->LinkedList
+When there is too many insertion and deletion go with linkedList.
+
+Node and every Node has three parts ,
+|----------------------------------|
+|Previous address|Data|Next address|
+|----------------------------------|
+
+LinkedList is used of the time to implemet stack and ques.
+->Doubly LinkedList
+->Singly LinkedList
+->Circular LinkedList
+
+Methods available in LinkedList class.
+======================================
+add(x) added at the expand
+add(index,x)
+addAll(collection c)
+remove(x)
+remove(index,x)
+removeAll(collection c)
+get()
+set(index,x)
+etc etc etc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+                                           
