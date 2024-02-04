@@ -8,6 +8,7 @@ public class javaEndofline {
     /*
      * Enter your code here. Read input from STDIN. Print output to STDOUT. Your
      * class should be named Solution.
+     * Add some comments just to create a pull request.
      */
     Scanner sc = new Scanner(System.in);
     int count = 1;
